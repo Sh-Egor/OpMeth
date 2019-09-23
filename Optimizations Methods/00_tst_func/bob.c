@@ -1,7 +1,8 @@
-#include "Fucn.c"
 #include <math.h>
 #include <stdio.h>
 #include <fcntl.h>
+#include <stdlib.h>
+#include "Fucn.c"
 
 void
 genData(int count)
@@ -18,7 +19,7 @@ main(void)
 {
 	int count;
 	printf("Enter count of dots\n");
-	scanf("%d",count); 
+	scanf("%d",&count); 
 	genData(count);
 	system("gnuplot plot.scr");
 	system("ristretto 1.png");

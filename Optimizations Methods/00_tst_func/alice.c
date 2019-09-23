@@ -1,5 +1,8 @@
 #include <fcntl.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <sys/wait.h>
 
 void
 genFile(char* fucn)
@@ -16,10 +19,18 @@ genFile(char* fucn)
 int
 main(void)
 {
+	pid_t pid;
 	char func[200];
+	int status;
 	printf("Enter function:\n");
 	scanf("%s",func);
 	genFile(func);
-
+	if(pid == fork()){
+		wait(&status);
+		execlp("./bob.out","bob.out",NULL);
+	}else{
+		system("gcc bob.c -lm -o bob.out");
+		_exit(0);
+	}
 	return 0;
 }
